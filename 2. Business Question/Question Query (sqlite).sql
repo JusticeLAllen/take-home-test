@@ -3,7 +3,6 @@ WITH most_recent_month AS (
 SELECT strftime('%Y%m', MAX(dateScanned)) as yearMonth,
 strftime('%Y-%m', MAX(dateScanned)) || '-01' AS dateTruncedMonth FROM receipt_items
 
--- It came up in QA that the most recent receipts with brand data are from January and February
 -- If I don't include this filter the most recent month with data is March '21 but we won't have any brand info so it's not paricularly helpful
 WHERE brandCode IN (SELECT brandCode FROM brands)
 ),
